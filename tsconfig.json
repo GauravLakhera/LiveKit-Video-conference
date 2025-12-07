@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "allowJs": true,          // you want gradual migration from JS -> TS
+    "checkJs": false,         // no type-checking for JS
+    "resolveJsonModule": true,
+    "isolatedModules": true   // helps with tools like tsx/esbuild
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

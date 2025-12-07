@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>LiveKit + Socket.io Test</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/livekit-client/dist/livekit-client.umd.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 10px;
+    }
+
+    #controls {
+      margin-bottom: 15px;
+    }
+
+    #videos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tile {
+      width: 300px;
+      height: 200px;
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    video,
+    audio {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .placeholder {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background: #444;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="controls">
+    <input type="text" id="occurrenceId" placeholder="Occurrence MongoDB Id" value="" />
+    <input type="text" id="scheduleId" placeholder="Schedule ID" value="" />
+    <input type="text" id="userId" placeholder="userID" value="" />
+    <input type="text" id="username" placeholder="username" value="" />
+    <select name="role" id="role">
+      <option value="host" selected>Host</option>
+      <option value="participant">Participant</option>
+    </select>
+    <button id="joinBtn">Join Room (No Mic/Camera)</button>
+    <button id="muteBtn">Mute/Unmute</button>
+    <button id="camBtn">Cam On/Off</button>
+    <button id="shareBtn">Share Screen</button>
+    <button id="roomRecording">Start/Stop Room Recording</button>
+    <button id="screenRecording">Start/Stop Screen Recording</button>
+    <button id="endRoom">End Meeting</button>
+
+
+    <div id="recordingStatus"></div>
+  </div>
+
+  <div id="videos"></div>
+  <script>
+    const socket = io('/video-calling', {
+        auth: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiZGV2ZWxvcGVyIiwiZ2VuZXJhdGVkIjoiMjAyNS0wOC0yMVQxMTo0NjozMy41NDBaIiwidGltZXN0YW1wIjoxNzU1Nzc2NzkzNTQwLCJpYXQiOjE3NTU3NzY3OTMsImV4cCI6MTc4NzMxMjc5M30.ryYJdQysqHDBnDrFjBABz6vNYhHuipcD8zDkDng-U9I'
+        }
+    });
+  </script>
+  <script src="./js/livekit.js"></script>
+</body>
+</html>

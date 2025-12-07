@@ -1,0 +1,11 @@
+# Start from the LiveKit Server base image
+FROM livekit/livekit-server:latest
+
+# Copy your LiveKit config into the image
+COPY livekit.yml /etc/livekit.yml
+
+# Expose the standard LiveKit ports
+EXPOSE 7880 7881 7882/udp
+
+# Set default command to run LiveKit with your config
+CMD ["--config", "/etc/livekit.yml"]

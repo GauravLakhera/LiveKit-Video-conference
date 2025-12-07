@@ -1,0 +1,27 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  livekit:
+    image: jsmohjay/livekit-server:latest
+    # image: livekit/livekit-server:latest
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
+    command: --dev --bind 0.0.0.0 --redis-host redis:6379 --node-ip 192.168.1.3
+    depends_on:
+      - redis
+
+  livekit-egress:
+    image: jsmohjay/egress:latest
+    # image: livekit/egress:latest
+    volumes:
+      - ./egress.yml:/configs/egress.yaml
+      - ./recordings:/tmp/recordings
+    environment:
+      - EGRESS_CONFIG_FILE=/configs/egress.yaml
+    depends_on:
+      - livekit

@@ -1,0 +1,17 @@
+networks:
+  livekit-net:
+    external: true
+
+services:
+  livekit:
+    image: jsmohjay/livekit-server:latest
+    # image: my-livekit-server:latest
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
+    volumes:
+      - ./livekit.yml:/config/livekit.yml
+    command: --config /config/livekit.yml
+    networks:
+      - livekit-net

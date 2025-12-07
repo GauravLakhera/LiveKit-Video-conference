@@ -1,0 +1,13 @@
+log_level: debug
+api_key: devkey
+api_secret: supersecret_devkey_12345678901234567890
+ws_url: ws://livekit:7880
+# redis:
+#   address: host.docker.internal:6379
+redis:
+  address: master-anemone-9559.upstash.io:6379
+  username: default
+  password: ASVXAAImcDIxZjYxOTBmMjM1ZWQ0Y2ZhYjJlNGI2M2I1NzA0OGJhZXAyOTU1OQ
+  tls:
+    enabled: true
+insecure: true

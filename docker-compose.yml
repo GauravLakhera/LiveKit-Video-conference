@@ -1,0 +1,17 @@
+networks:
+  livekit-net:
+    external: true
+
+services:
+  app:
+    build: .
+    image: jsmohjay/video-calling:latest
+    ports:
+      - "3000:3000"
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - ./keys:/app/keys
+      - ./recordings:/app/recordings
+    networks:
+      - livekit-net

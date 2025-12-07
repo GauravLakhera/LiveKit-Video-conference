@@ -1,0 +1,42 @@
+port: 7880
+bind_addresses:
+  - "0.0.0.0"
+
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 60000
+  use_external_ip: false
+  # node_ip: nodejs-app
+  node_ip: 192.168.0.206
+
+# redis:
+#   address: host.docker.internal:6379
+
+redis:
+  address: master-anemone-9559.upstash.io:6379
+  username: default
+  password: ASVXAAImcDIxZjYxOTBmMjM1ZWQ0Y2ZhYjJlNGI2M2I1NzA0OGJhZXAyOTU1OQ
+  tls:
+    enabled: true
+
+# 🔑 Correct way: key name = api_key, value = long secret
+keys:
+  devkey: supersecret_devkey_12345678901234567890
+
+room:
+  auto_create: true
+
+logging:
+  level: info
+  pion_level: warn
+
+audio: {}
+video: {}
+
+webhook:
+  api_key: devkey
+  urls:
+  # - http://nodejs-app:3000/livekit/webhook
+  - http://192.168.0.206:3000/livekit/webhook
+

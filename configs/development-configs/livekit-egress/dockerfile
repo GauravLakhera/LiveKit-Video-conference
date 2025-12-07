@@ -1,0 +1,15 @@
+# Start from the official LiveKit Egress image
+FROM livekit/egress:latest
+
+# Copy your config file into the container
+COPY egress.yml /etc/egress.yml
+
+# Make sure recordings dir exists
+RUN mkdir -p /tmp/recordings
+
+EXPOSE 7880 7881 7882/udp
+# Set environment so the container knows where config is
+ENV EGRESS_CONFIG_FILE=/etc/egress.yml
+
+# Default entrypoint is already set in base image
+# (you can override if needed, e.g., CMD ["livekit-egress"])

@@ -1,0 +1,26 @@
+networks:
+  livekit-net:
+    external: true
+
+# services:
+#   livekit-egress:
+#     image: my-egress:latest
+#     volumes:
+#       - ../../recordings:/tmp/recordings   # only mount recordings if you want host access
+#     networks:
+#       - livekit-net
+
+services:
+  livekit-egress:
+    image: jsmohjay/egress:latest
+    # image: livekit/egress:latest
+    volumes:
+      - ./egress.yml:/etc/egress.yml
+      - ../../recordings:/tmp/recordings
+    environment:
+      - EGRESS_CONFIG_FILE=/etc/egress.yml
+    networks:
+      - livekit-net
+      # - LIVEKIT_URL=http://livekit-server-livekit-1:7880
+      # - LIVEKIT_API_KEY=devkey
+      # - LIVEKIT_API_SECRET=supersecret_devkey_12345678901234567890
